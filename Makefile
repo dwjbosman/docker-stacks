@@ -62,3 +62,7 @@ test/%:
 
 test/base-notebook: ## test supported options in the base notebook
 	@TEST_IMAGE="$(OWNER)/$(notdir $@)" pytest test base-notebook/test
+
+run_datascience:
+	docker run -it --rm -p 8890:8888 -v /home/dinne:/home/dinne --user root -e GRANT_SUDO=yes -e NB_USER=dinne -e NB_UID=1000 -e NB_GID=1000  jupyter/datascience-notebook start.sh jupyter lab
+
